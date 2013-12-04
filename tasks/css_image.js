@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       images_path:"../images"
     });
 
-    var parser = imagesize.Parser();
+    
     var info = [];
     var done = this.async();
     var counts = grunt.util._.reduce(this.files, function(memo,item){
@@ -63,6 +63,7 @@ module.exports = function(grunt) {
       f.src.forEach(function(itempath){
         var src = path.join(f.cwd, itempath);
         fs.readFile(src, function(err,data){
+          var parser = imagesize.Parser();
           var retStatus = parser.parse(data);
           if(imagesize.Parser.DONE == retStatus){
             var result = parser.getResult();
