@@ -77,7 +77,18 @@ grunt.initConfig({
   },
 });
 ```
-
+#### Sample resulting css
+```css
+/* This file is generated */
+.img_credits_footer{
+  background: transparent url("../images/base/credits_footer.png") 0 0 no-repeat ;
+  width: 376px;
+  height: 94px;
+  text-indent: -5000px;
+  display: block;
+  z-index: 0;
+}
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
