@@ -25,8 +25,9 @@ module.exports = function(grunt) {
     };
 
     var getCssClass = function(prefix, width, height, images_path, folder, name, ext){
+      var folderName = folder.replace("/","_");
       return "." +
-      prefix + name + "{\n" +
+      prefix + folderName + "_" + name + "{\n" +
       "  background: transparent url(\"" + images_path + "/" + folder + "/" + name  + ext + "\") 0 0 no-repeat ;\n" +
       "  width: "+  width + "px;\n" +
       "  height: " + height + "px;\n" +
