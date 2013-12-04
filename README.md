@@ -25,62 +25,59 @@ In your project's Gruntfile, add a section named `css_image` to the data object 
 ```js
 grunt.initConfig({
   css_image: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    dist:{
+      files:[{
+        cwd:"app/images/"
+        src: "**/*.{png,jpg,gif,jpeg}"
+        dest: "app/styles/_img.css"
+      }]
+      options:{
+        prefix:"img_",
+        images_path:"../images"
+      }
+    }
   },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.prefix
 Type: `String`
-Default value: `',  '`
+Default value: `'img_'`
 
-A string value that is used to do something with whatever.
+Css prefix. For example: .img_sample_image for sample_image.png
 
-#### options.punctuation
+#### options.images_path
 Type: `String`
-Default value: `'.'`
+Default value: `'../images'`
 
-A string value that is used to do something else with whatever else.
+Path to image source.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example task search all images from "app/images/" according mask "**/*.{png,jpg,gif,jpeg}" and write css file in "app/styles/img.css"
+with css prefix "_img" and path to image folder "../images"
 
 ```js
 grunt.initConfig({
   css_image: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    dist:{
+      files:[{
+        cwd:"app/images/"
+        src: "**/*.{png,jpg,gif,jpeg}"
+        dest: "app/styles/img.css"
+      }]
+      options:{
+        prefix:"img_",
+        images_path:"../images"
+      }
+    }
   },
 });
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  css_image: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
