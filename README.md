@@ -72,6 +72,13 @@ grunt.initConfig({
       options:{
         prefix:"img_",
         images_path:"../images"
+        css_options:{
+          z_index:0,
+          display:"block",
+          text_indent:"-5000px",
+          background_color:"transparent",
+          background_position:"0px 0px",
+        },
       }
     }
   },
@@ -81,12 +88,12 @@ grunt.initConfig({
 ```css
 /* This file is generated */
 .img_credits_footer{
-  background: transparent url("../images/base/credits_footer.png") 0 0 no-repeat ;
-  width: 376px;
-  height: 94px;
-  text-indent: -5000px;
+  background: red url("../images/2.jpg") 0px 0px no-repeat;
+  width: 374px;
+  height: 281px; 
+  z-index: 0; 
+  text-indent: -5000px; 
   display: block;
-  z-index: 0;
 }
 ```
 

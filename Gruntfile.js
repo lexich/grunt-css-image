@@ -14,8 +14,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
       all: [
-        'Gruntfile.js',
-        'tasks/*.js',
+        'Gruntfile.js',        
         '<%= nodeunit.tests %>',
       ],
       options: {
@@ -30,22 +29,24 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     css_image: {
-      default_options: {
+      default_options: {        
         options: {
+          prefix:"custom_",
+          images_path: "http://example.com",
+          css_options:{
+            z_index:0,
+            display:"block",
+            text_indent:"-5000px",
+            background_color:"red",
+            background_position:"0px 0px",
+          },
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
+        files:[{
+          cwd:"test/fixtures/images/",
+          src: "**/*.{png,jpg,gif,jpeg}",
+          dest: "tmp/_custom.css"
+        }]
+      }
     },
 
     // Unit tests.

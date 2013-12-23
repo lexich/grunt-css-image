@@ -27,22 +27,22 @@ exports.css_image = {
     // setup here if necessary
     done();
   },
-  default_options: function(test) {
-    test.expect(1);
-
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
-
-    test.done();
-  },
-  custom_options: function(test) {
-    test.expect(1);
-
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
-
+  default_options: function(test) {        
+    var actual = grunt.file.read('tmp/_custom.css');
+    
+    test.ok(actual.indexOf(".custom__2") > 0);
+    test.ok(actual.indexOf(".custom_cat_20090508_025_amazing") > 0);
+    test.ok(actual.indexOf(".custom__7151") > 0);
+    test.ok(actual.indexOf(".custom__thumbkoshki3912") > 0);
+    test.ok(actual.indexOf("background") > 0);
+    test.ok(actual.indexOf("background: red") > 0);
+    test.ok(actual.indexOf("width:") > 0);
+    test.ok(actual.indexOf("height:") > 0);
+    test.ok(actual.indexOf("z-index: 0;") > 0);
+    test.ok(actual.indexOf("text-indent: -5000px;") > 0);
+    test.ok(actual.indexOf("display: block;") > 0);
+    test.ok(actual.indexOf("http://example.com/") > 0);
+    test.ok(actual.indexOf('background: red url("http://example.com/2.png") 0px 0px no-repeat;') > 0);
     test.done();
   },
 };

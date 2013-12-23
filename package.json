@@ -1,11 +1,12 @@
 {
   "name": "grunt-css-image",
   "description": "Plugin to generate css file wto bind all images from folder",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "homepage": "https://github.com/lexich/grunt-css-image",
   "author": {
-    "name": "Efremov ALexey (lexich)",
-    "email": "lexich121@gmail.com"
+    "name": "Efremov ALexey",
+    "email": "lexich121@gmail.com",
+    "url": "lexich"
   },
   "repository": {
     "type": "git",
@@ -28,18 +29,23 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "imagesize":"*"
+    "imagesize": "*"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "coffee-script": "~1.6.3"
   },
   "peerDependencies": {
     "grunt": "~0.4.2"
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "readme": "# grunt-css-image\n\n> Plugin to generate css file wto bind all images from folder\n\n## Getting Started\nThis plugin requires Grunt `~0.4.2`\n\nIf you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:\n\n```shell\nnpm install grunt-css-image --save-dev\n```\n\nOnce the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:\n\n```js\ngrunt.loadNpmTasks('grunt-css-image');\n```\n\n## The \"css_image\" task\n\n### Overview\nIn your project's Gruntfile, add a section named `css_image` to the data object passed into `grunt.initConfig()`.\n\n```js\ngrunt.initConfig({\n  css_image: {\n    dist:{\n      files:[{\n        cwd:\"app/images/\"\n        src: \"**/*.{png,jpg,gif,jpeg}\"\n        dest: \"app/styles/_img.css\"\n      }]\n      options:{\n        prefix:\"img_\",\n        images_path:\"../images\"\n      }\n    }\n  },\n});\n```\n\n### Options\n\n#### options.prefix\nType: `String`\nDefault value: `'img_'`\n\nCss prefix. For example: .img_sample_image for sample_image.png\n\n#### options.images_path\nType: `String`\nDefault value: `'../images'`\n\nPath to image source.\n\n### Usage Examples\n\n#### Default Options\nIn this example task search all images from \"app/images/\" according mask \"**/*.{png,jpg,gif,jpeg}\" and write css file in \"app/styles/img.css\"\nwith css prefix \"_img\" and path to image folder \"../images\"\n\n```js\ngrunt.initConfig({\n  css_image: {\n    dist:{\n      files:[{\n        cwd:\"app/images/\"\n        src: \"**/*.{png,jpg,gif,jpeg}\"\n        dest: \"app/styles/img.css\"\n      }]\n      options:{\n        prefix:\"img_\",\n        images_path:\"../images\"\n      }\n    }\n  },\n});\n```\n#### Sample resulting css\n```css\n/* This file is generated */\n.img_credits_footer{\n  background: transparent url(\"../images/base/credits_footer.png\") 0 0 no-repeat ;\n  width: 376px;\n  height: 94px;\n  text-indent: -5000px;\n  display: block;\n  z-index: 0;\n}\n```\n\n## Contributing\nIn lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).\n\n## Release History\n_(Nothing yet)_\n",
+  "readmeFilename": "README.md",
+  "_id": "grunt-css-image@0.1.3",
+  "_from": "grunt-css-image@"
 }
