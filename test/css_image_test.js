@@ -25,15 +25,19 @@ var grunt = require('grunt');
 exports.css_image = {
   setUp: function(done) {
     // setup here if necessary
+    this.actual = grunt.file.read('tmp/_custom.css');
     done();
   },
-  default_options: function(test) {        
-    var actual = grunt.file.read('tmp/_custom.css');
-    
-    test.ok(actual.indexOf(".custom__2") > 0);
-    test.ok(actual.indexOf(".custom_cat_20090508_025_amazing") > 0);
-    test.ok(actual.indexOf(".custom__7151") > 0);
-    test.ok(actual.indexOf(".custom__thumbkoshki3912") > 0);
+  check_classnames:function(test){
+    var actual = this.actual;
+    test.ok(actual.indexOf(".custom-2") > 0);
+    test.ok(actual.indexOf(".custom-cat20090508_025_amazing") > 0);
+    test.ok(actual.indexOf(".custom-7151") > 0);
+    test.ok(actual.indexOf(".custom-thumbkoshki3912") > 0);
+    test.done();
+  },
+  check_styles: function(test) {        
+    var actual = this.actual;
     test.ok(actual.indexOf("background") > 0);
     test.ok(actual.indexOf("background: red") > 0);
     test.ok(actual.indexOf("width:") > 0);

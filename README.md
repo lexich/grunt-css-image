@@ -33,7 +33,8 @@ grunt.initConfig({
       }]
       options:{
         prefix:"img_",
-        images_path:"../images"
+        images_path:"../images",
+        sep:"_"
       }
     }
   },
@@ -53,6 +54,25 @@ Type: `String`
 Default value: `'../images'`
 
 Path to image source.
+
+#### options.sep
+Type: `String`
+Default value: `'_'`
+Separator symbol between folder name and filename
+prefix + normalize_folder_name + sep + normalize_file_name.
+
+#### options.css_options
+Type: `Object`
+Default value: `{}`
+Generate additional css options
+available options:
+- z_index
+- display
+- text_indent
+- background_color
+- background_position
+
+
 
 ### Usage Examples
 

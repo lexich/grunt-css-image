@@ -19,7 +19,7 @@ module.exports = (grunt) ->
       item.filename.replace /\.(png|jpg|jpeg|gif)/, ""
 
     getCssClass = (options) ->
-      {prefix, width, height, images_path, folder, name, ext, css_options} = options
+      {prefix, width, height, images_path, folder, name, ext, css_options,sep} = options
       className = name.replace(".", "")
       folderName = folder.replace("/", "_").replace(".","")
       txt = "";
@@ -31,7 +31,7 @@ module.exports = (grunt) ->
       background_color = if css_options.background_color? then "#{css_options.background_color}" else "transparent"
       background_position = if css_options.background_position? then "#{css_options.background_position}" else "0 0"
       path = "#{images_path}/#{folder}/#{name}#{ext}".replace(/\/.\//g,"\/")
-      css_class_name = "#{prefix}#{folderName}_#{className}"
+      css_class_name = "#{prefix}#{folderName}#{sep}#{className}"
       background = "background: #{background_color} url(\"#{path}\") #{background_position} no-repeat;"
       """\n.#{css_class_name}{
         #{background}
@@ -44,6 +44,7 @@ module.exports = (grunt) ->
     options = @options(
       prefix: "img_"
       images_path: "../images"
+      sep:"_"
       css_options:{}
     )
     info = []
@@ -60,6 +61,7 @@ module.exports = (grunt) ->
       info.forEach (item) ->     
         folder = item.folder   
         txt += getCssClass
+          sep:options.sep
           prefix:options.prefix
           width:item.width
           height:item.height

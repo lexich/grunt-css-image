@@ -29,10 +29,11 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     css_image: {
-      default_options: {        
+      custom_options: {        
         options: {
-          prefix:"custom_",
+          prefix:"custom-",
           images_path: "http://example.com",
+          sep:"",
           css_options:{
             z_index:0,
             display:"block",
@@ -66,7 +67,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'css_image', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'css_image:custom_options', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
