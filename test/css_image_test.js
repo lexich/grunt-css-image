@@ -25,7 +25,7 @@ var grunt = require('grunt');
 exports.css_image = {
   setUp: function(done) {
     // setup here if necessary
-    this.actual = grunt.file.read('tmp/_custom.css');
+    this.actual = grunt.file.read('tmp/_custom.css');    
     done();
   },
   check_classnames:function(test){
@@ -49,4 +49,9 @@ exports.css_image = {
     test.ok(actual.indexOf('background: red url("http://example.com/2.png") 0px 0px no-repeat;') > 0);
     test.done();
   },
+  check_nullconfig:function(test){
+    var nullimages = grunt.file.read("tmp/_nullimages.css");
+    test.equal(nullimages,"/* This file is generated */\n","file isn't null or bad formed");
+    test.done();
+  }
 };

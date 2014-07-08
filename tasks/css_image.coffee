@@ -52,8 +52,9 @@ module.exports = (grunt) ->
     counts = grunt.util._.reduce(@files, (memo, item) -> 
         memo + grunt.util._.size(item.src)
     , 0)
-    complete = grunt.util._.after(counts, (err, opts) ->
-      dest = opts.dest
+    default_dest = @files[0]?.dest    
+    complete = grunt.util._.after(counts, (err, opts = {}) ->
+      dest = opts.dest or default_dest
       info = _.sortBy opts.info, (item)->
         item.filename
 
