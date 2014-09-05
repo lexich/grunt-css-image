@@ -14,7 +14,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
       all: [
-        'Gruntfile.js',        
+        'Gruntfile.js',
         '<%= nodeunit.tests %>',
       ],
       options: {
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     css_image: {
-      custom_options: {        
+      custom_options: {
         options: {
           prefix:"custom-",
           images_path: "http://example.com",
@@ -54,6 +54,18 @@ module.exports = function(grunt) {
           src: "**/*.{png,jpg,gif,jpeg}",
           dest: "tmp/_nullimages.css"
         }]
+      },
+      retina_options: {
+        files:[{
+          cwd:"test/fixtures/images/",
+          src: "**/*.{png,jpg,gif,jpeg}",
+          dest: "tmp/_retina.css"
+        }],
+        options: {
+          retina: 2,
+          prefix:"custom-",
+          sep: ""
+        }
       }
     },
 
@@ -75,9 +87,10 @@ module.exports = function(grunt) {
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', [
-    'clean', 
+    'clean',
+    'css_image:retina_options',
     'css_image:custom_options',
-    'css_image:null_options', 
+    'css_image:null_options',
     'nodeunit']);
 
   // By default, lint and run all tests.

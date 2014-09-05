@@ -4,13 +4,13 @@
 # *
 # * Copyright (c) 2013 Efremov ALexey (lexich)
 # * Licensed under the MIT license.
-# 
+#
 "use strict"
 imagesize = require("imagesize")
 fs = require("fs")
-path = require("path")
+libpath = require("path")
 module.exports = (grunt) ->
-  
+
   # Please see the Grunt documentation for more information regarding task
   # creation: http://gruntjs.com/creating-tasks
   grunt.registerMultiTask "css_image", "Plugin to generate css file wto bind all images from folder", ->
@@ -33,34 +33,50 @@ module.exports = (grunt) ->
       path = "#{images_path}/#{folder}/#{name}#{ext}".replace(/\/.\//g,"\/")
       css_class_name = "#{prefix}#{folderName}#{sep}#{className}"
       background = "background: #{background_color} url(\"#{path}\") #{background_position} no-repeat;"
-      """\n.#{css_class_name}{
+
+      generateClass = """\n.#{css_class_name}{
         #{background}
         width: #{width}px;
         height: #{height}px; #{z_index} #{text_indent} #{display}
-      }"""
+        background-size: #{width}px #{height}px;
+      }
+      """
+      if options.retina
+        retina = options.retina * 1.0
+        generateClass += """\n.#{css_class_name}-#{retina}x{
+        #{background}
+        width: #{width/retina}px;
+        height: #{height/retina}px; #{z_index} #{text_indent} #{display}
+        background-size: #{width/retina}px #{height/retina}px;
+      }
+      """
 
-    
+      generateClass
+
+
+
     # Merge task-specific and/or target-specific options with these defaults.
     options = @options(
       prefix: "img_"
       images_path: "../images"
-      sep:"_"
-      css_options:{}
+      sep: "_"
+      css_options: {}
+      retina: 2
     )
     info = []
     done = @async()
-    counts = grunt.util._.reduce(@files, (memo, item) -> 
+    counts = grunt.util._.reduce(@files, (memo, item) ->
         memo + grunt.util._.size(item.src)
     , 0)
-    default_dest = @files[0]?.dest    
+    default_dest = @files[0]?.dest
     complete = grunt.util._.after(counts, (err, opts = {}) ->
       dest = opts.dest or default_dest
       info = _.sortBy opts.info, (item)->
         item.filename
 
       txt = "/* This file is generated */\n"
-      info.forEach (item) ->     
-        folder = item.folder   
+      info.forEach (item) ->
+        folder = item.folder
         txt += getCssClass
           sep:options.sep
           prefix:options.prefix
@@ -71,6 +87,7 @@ module.exports = (grunt) ->
           name:getName(item)
           ext:item.ext
           css_options:options.css_options
+          retina: options.retina
 
       grunt.file.write dest, txt
       grunt.log.writeln "File \"" + dest + "\" created."
@@ -78,15 +95,15 @@ module.exports = (grunt) ->
     )
     @files.forEach (f) ->
       f.src.forEach (itempath) ->
-        src = path.join(f.cwd, itempath)
+        src = libpath.join(f.cwd, itempath)
         fs.readFile src, (err, data) ->
           parser = imagesize.Parser()
           retStatus = parser.parse(data)
           if imagesize.Parser.DONE is retStatus
             result = parser.getResult()
-            result.filename = path.basename(src)
-            result.ext = path.extname(src)
-            result.folder = path.dirname(itempath)
+            result.filename = libpath.basename(src)
+            result.ext = libpath.extname(src)
+            result.folder = libpath.dirname(itempath)
             info.push result
           complete null,
             info: info

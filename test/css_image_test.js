@@ -25,7 +25,7 @@ var grunt = require('grunt');
 exports.css_image = {
   setUp: function(done) {
     // setup here if necessary
-    this.actual = grunt.file.read('tmp/_custom.css');    
+    this.actual = grunt.file.read('tmp/_custom.css');
     done();
   },
   check_classnames:function(test){
@@ -36,7 +36,7 @@ exports.css_image = {
     test.ok(actual.indexOf(".custom-thumbkoshki3912") > 0);
     test.done();
   },
-  check_styles: function(test) {        
+  check_styles: function(test) {
     var actual = this.actual;
     test.ok(actual.indexOf("background") > 0);
     test.ok(actual.indexOf("background: red") > 0);
@@ -53,5 +53,18 @@ exports.css_image = {
     var nullimages = grunt.file.read("tmp/_nullimages.css");
     test.equal(nullimages,"/* This file is generated */\n","file isn't null or bad formed");
     test.done();
-  }
+  },
+  check_retina:function(test){
+    var actual = grunt.file.read("tmp/_retina.css");
+    test.ok(actual.indexOf(".custom-2") > 0);
+    test.ok(actual.indexOf(".custom-cat20090508_025_amazing") > 0);
+    test.ok(actual.indexOf(".custom-7151") > 0);
+    test.ok(actual.indexOf(".custom-thumbkoshki3912") > 0);
+    test.ok(actual.indexOf(".custom-2-2x") > 0);
+    test.ok(actual.indexOf(".custom-cat20090508_025_amazing-2x") > 0);
+    test.ok(actual.indexOf(".custom-7151-2x") > 0);
+    test.ok(actual.indexOf(".custom-thumbkoshki3912-2x") > 0);
+    test.ok(actual.indexOf("background-size") > 0 );
+    test.done();
+  },
 };
