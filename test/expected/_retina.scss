@@ -1,0 +1,57 @@
+/* This file is generated */
+@mixin custom-2(){
+  width: 400px;
+  height: 300px;
+  background-image: url(2.png);
+  background-size: 400px 300px;
+  @media (min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+    width: 400px;
+    height: 300px;
+    background-image: url(2-50pc.png);
+    background-size: 400px 300px;
+  }
+}
+$custom-2__width: 400px;
+$custom-2__height: 300px;
+@mixin custom-7151(){
+  width: 320px;
+  height: 240px;
+  background-image: url(7151.jpg);
+  background-size: 320px 240px;
+  @media (min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+    width: 320px;
+    height: 240px;
+    background-image: url(7151-50pc.jpg);
+    background-size: 320px 240px;
+  }
+}
+$custom-7151__width: 320px;
+$custom-7151__height: 240px;
+@mixin custom-cat_20090508_025_amazing(){
+  width: 374px;
+  height: 281px;
+  background-image: url(cat/20090508_025_amazing.jpg);
+  background-size: 374px 281px;
+  @media (min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+    width: 374px;
+    height: 281px;
+    background-image: url(cat/20090508_025_amazing-50pc.jpg);
+    background-size: 374px 281px;
+  }
+}
+$custom-cat_20090508_025_amazing__width: 374px;
+$custom-cat_20090508_025_amazing__height: 281px;
+@mixin custom-thumbkoshki3912(){
+  width: 160px;
+  height: 120px;
+  background-image: url(thumbkoshki3912.jpg);
+  background-size: 160px 120px;
+  @media (min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+    width: 160px;
+    height: 120px;
+    background-image: url(thumbkoshki3912-50pc.jpg);
+    background-size: 160px 120px;
+  }
+}
+$custom-thumbkoshki3912__width: 160px;
+$custom-thumbkoshki3912__height: 120px;

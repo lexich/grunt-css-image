@@ -15,7 +15,6 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        '<%= nodeunit.tests %>',
       ],
       options: {
         jshintrc: '.jshintrc',
@@ -32,15 +31,8 @@ module.exports = function(grunt) {
       custom_options: {
         options: {
           prefix:"custom-",
-          images_path: "http://example.com",
-          sep:"",
-          css_options:{
-            z_index:0,
-            display:"block",
-            text_indent:"-5000px",
-            background_color:"red",
-            background_position:"0px 0px",
-          },
+          root: "http://example.com",
+          separator:"--",
         },
         files:[{
           cwd:"test/fixtures/images/",
@@ -56,24 +48,44 @@ module.exports = function(grunt) {
         }]
       },
       retina_options: {
+        options: {
+          css: false,
+          scss: true,
+          retina: true,
+          prefix:"custom-",
+          separator: ""
+        },
         files:[{
           cwd:"test/fixtures/images/",
           src: "**/*.{png,jpg,gif,jpeg}",
-          dest: "tmp/_retina.css"
-        }],
+          dest: "tmp/_retina.scss"
+        }]
+      },
+      full_options: {
         options: {
-          retina: 2,
+          css: true,
+          scss: true,
+          retina: true,
+          squeeze: 2,
           prefix:"custom-",
-          sep: ""
-        }
+          separator: "-"
+        },
+        files:[{
+          cwd:"test/fixtures/images/",
+          src: "**/*.{png,jpg,gif,jpeg}",
+          dest: "tmp/_full.scss"
+        }]
       }
+
     },
 
     // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js'],
+    mochaTest: {
+      test: {
+      	reporter: "spec"
+      },
+      src: ['test/*_spec.coffee'],
     },
-
   });
 
   // Actually load this plugin's task(s).
@@ -82,16 +94,14 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', [
     'clean',
-    'css_image:retina_options',
-    'css_image:custom_options',
-    'css_image:null_options',
-    'nodeunit']);
+    'css_image',
+    'mochaTest']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
