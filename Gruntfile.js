@@ -81,9 +81,7 @@ module.exports = function(grunt) {
 
     // Unit tests.
     mochaTest: {
-      test: {
-      	reporter: "spec"
-      },
+      test: { reporter: "spec" },
       src: ['test/*_spec.coffee'],
     },
   });
