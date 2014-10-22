@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "css-image": "0.1.0",
-    "imagesize": "*"
+    "imagesize": "*",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "coffee-script": "^1.7.1",
