@@ -2,6 +2,8 @@
 
 > Plugin to generate css file wto bind all images from folder
 
+[![Build Status](https://travis-ci.org/lexich/grunt-css-image.svg?branch=master)](https://travis-ci.org/lexich/grunt-css-image)
+
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
 
