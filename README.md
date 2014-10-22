@@ -32,9 +32,13 @@ grunt.initConfig({
         dest: "app/styles/_img.css"
       }]
       options:{
-        prefix:"img_",
-        images_path:"../images",
-        sep:"_"
+        css: true, 
+        scss: false, 
+        retina: false,
+        squeeze: 1, 
+        root: "", 
+        separator: "_", 
+        prefix: "img_"
       }
     }
   },
@@ -42,36 +46,7 @@ grunt.initConfig({
 ```
 
 ### Options
-
-#### options.prefix
-Type: `String`
-Default value: `'img_'`
-
-Css prefix. For example: .img_sample_image for sample_image.png
-
-#### options.images_path
-Type: `String`
-Default value: `'../images'`
-
-Path to image source.
-
-#### options.sep
-Type: `String`
-Default value: `'_'`
-Separator symbol between folder name and filename
-prefix + normalize_folder_name + sep + normalize_file_name.
-
-#### options.css_options
-Type: `Object`
-Default value: `{}`
-Generate additional css options
-available options:
-- z_index
-- display
-- text_indent
-- background_color
-- background_position
-
+see options of [css-image](https://github.com/lexich/css-image#options)
 
 
 ### Usage Examples
@@ -88,18 +63,8 @@ grunt.initConfig({
         cwd:"app/images/"
         src: "**/*.{png,jpg,gif,jpeg}"
         dest: "app/styles/img.css"
-      }]
-      options:{
-        prefix:"img_",
-        images_path:"../images"
-        css_options:{
-          z_index:0,
-          display:"block",
-          text_indent:"-5000px",
-          background_color:"transparent",
-          background_position:"0px 0px",
-        },
-      }
+      }],
+      options: {}
     }
   },
 });
@@ -107,13 +72,11 @@ grunt.initConfig({
 #### Sample resulting css
 ```css
 /* This file is generated */
-.img_credits_footer{
-  background: red url("../images/2.jpg") 0px 0px no-repeat;
-  width: 374px;
-  height: 281px; 
-  z-index: 0; 
-  text-indent: -5000px; 
-  display: block;
+.img_cat{
+  width: 400px;
+  height: 300px;
+  background-image: url(cat.png);
+  background-size: 400px 300px;
 }
 ```
 
