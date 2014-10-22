@@ -1,7 +1,7 @@
 {
   "name": "grunt-css-image",
   "description": "Plugin to generate css file wto bind all images from folder",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "homepage": "https://github.com/lexich/grunt-css-image",
   "author": {
     "name": "Efremov ALexey",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "css-image": "0.1.0",
-    "imagesize": "*",
+    "imagesize": "^1.0.0",
     "lodash": "^2.4.1"
   },
   "devDependencies": {
