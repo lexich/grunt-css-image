@@ -49,8 +49,16 @@ grunt.initConfig({
 ```
 
 ### Options
-see options of [css-image](https://github.com/lexich/css-image#options)
+grunt-css-image is grunt plugin and use [css-image](https://github.com/lexich/css-image) module functionality. Full description of option's configuration read [css-image](https://github.com/lexich/css-image#options)
 
+###Default options:
+- css: true
+- scss: false
+- retina: false,
+- squeeze: 1
+- root: ""
+- separator: "_"
+- prefix: "img_"
 
 ### Usage Examples
 
@@ -81,6 +89,38 @@ grunt.initConfig({
   background-image: url(cat.png);
   background-size: 400px 300px;
 }
+```
+
+#### Custom Options: generate scss
+
+```js
+grunt.initConfig({
+  css_image: {
+    dist:{
+      files:[{
+        cwd:"app/images/"
+        src: "**/*.{png,jpg,gif,jpeg}"
+        dest: "app/styles/img.css"
+      }],
+      options: {
+        css: false,
+        scss: true
+      }
+    }
+  },
+});
+```
+#### Sample resulting scss
+```scss
+/* This file is generated */
+@mixin img_cat(){
+  width: 400px;
+  height: 300px;
+  background-image: url(cat.png);
+  background-size: 400px 300px;
+}
+img_cat__width: 400px;
+img_cat__height: 300px;
 ```
 
 ## Contributing
