@@ -1,7 +1,7 @@
 {
   "name": "grunt-css-image",
   "description": "Plugin to generate css file wto bind all images from folder",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "https://github.com/lexich/grunt-css-image",
   "author": {
     "name": "Efremov ALexey",
@@ -29,19 +29,19 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "css-image": "^0.1.1",
+    "css-image": "^0.1.2",
     "imagesize": "^1.0.0",
-    "lodash": "^2.4.1"
+    "lodash": "^3.3.1"
   },
   "devDependencies": {
     "coffee-script": "^1.7.1",
     "grunt": "^0.4.5",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
     "grunt-mocha-test": "^0.12.1",
-    "mocha": "^1.21.5",
-    "should": "^4.0.4"
+    "mocha": "^2.1.0",
+    "should": "^5.1.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.2"
