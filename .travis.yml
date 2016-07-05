@@ -1,11 +1,13 @@
 language: node_js
 node_js:
-  - '0.10'
+  - '4'
+  - '5'
+  - '6'
 
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - npm install -g grunt-cli 
+  - npm install -g grunt-cli
 
 after_script:
   - npm test
