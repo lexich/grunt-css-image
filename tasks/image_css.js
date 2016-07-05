@@ -9,7 +9,10 @@
 var imagesize = require("imagesize"),
     fs = require("fs"),
     libpath = require("path"),
-    _ = require("lodash"),
+    reduce = require("lodash/reduce"),
+    size = require("lodash/size"),
+    after = require("lodash/after"),
+    sortBy = require("lodash/sortBy"),
     cssimage = require("css-image");
 
 module.exports = function(grunt){
@@ -21,16 +24,16 @@ module.exports = function(grunt){
       squeeze: 1, root: "", separator: "_", prefix: "img_" });
     var info = [];
     var done = this.async();
-    var counts = grunt.util._.reduce(this.files, function(memo, item){
-        return memo + grunt.util._.size(item.src);
+    var counts = reduce(this.files, function(memo, item){
+        return memo + size(item.src);
     }, 0);
 
     var default_dest = this.files[0] ? this.files[0].dest : null;
 
-    var complete = grunt.util._.after(counts, function(err, opts){
+    var complete = after(counts, function(err, opts){
       if(!opts){ opts = {}; }
       var dest = opts.dest || default_dest;
-      var info = _.sortBy(opts.info, function(item){ return item.file; });
+      var info = sortBy(opts.info, function(item){ return item.file; });
 
       var txt = "/* This file is generated */\n";
       txt += cssimage(info, options);
